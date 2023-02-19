@@ -1,9 +1,9 @@
 <template>
   <form @submit.prevent>
     <h4>Create new post:</h4>
-    <input class="input" v-model="post.title" type="text" placeholder="Title"/>
-    <input class="input" v-model="post.body" type="text" placeholder="Description"/>
-    <button class="btn" @click="createPost">Create</button>
+    <MyInput v-model="post.title" type="text" placeholder="Title"/>
+    <MyInput v-model="post.body" type="text" placeholder="Description"/>
+    <MyButton class="btn" @click="createPost">Create</MyButton>
   </form>
 </template>
 
@@ -35,21 +35,5 @@ export default {
 form {
   display: flex;
   flex-direction: column;
-}
-
-.btn {
-  align-self: flex-end;
-  margin-top: 15px;
-  padding: 10px 15px;
-  background: none;
-  color: teal;
-  border: 1px solid teal;
-}
-
-.input {
-  width: auto;
-  border: 1px solid teal;
-  padding: 10px 15px;
-  margin-top: 15px;
 }
 </style>
