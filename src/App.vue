@@ -1,20 +1,18 @@
 <template>
   <div class="app">
-    <form @submit.prevent>
-      <h4>Create new post:</h4>
-      <input class="input" :value="title" @input="title = $event.target.value" type="text" placeholder="Title"/>
-      <input class="input" :value="body"  @input="body = $event.target.value" type="text" placeholder="Description"/>
-      <button class="btn" @click="createPost">Create</button>
-    </form>
-    <div class="post" v-for="{ title, body } in posts">
-      <div><strong>Title: </strong>{{ title }}</div>
-      <div><strong>Description: </strong>{{ body }}</div>
-    </div>
+    <PostForm @create ="(value) => posts.push(value)" />
+    <PostList :posts="posts" />
   </div>
 </template>
 
 <script>
+import PostList from '@/components/PostList.vue'
+import PostForm from '@/components/PostForm.vue'
+
 export default {
+  components: {
+    PostList, PostForm
+  },
   data() {
     return {
       title: '',
@@ -26,18 +24,7 @@ export default {
       ]
     }
   },
-  methods: {
-    createPost() {
-      const newPost = {
-        id: Date.now(),
-        title: this.title,
-        body: this.body
-      }
-      this.posts.push(newPost)
-      this.title = ''
-      this.body = ''
-    },
-  }
+
 }
 </script>
 
